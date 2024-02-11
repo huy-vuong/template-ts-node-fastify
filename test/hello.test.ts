@@ -1,4 +1,4 @@
-import { getHello } from 'template-ts-node/hello';
+import { getHello } from 'template-ts-node-fastify/hello';
 
 describe('getHello', () => {
   test("returns the string 'Hello world!'", () => {
