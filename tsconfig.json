@@ -16,5 +16,6 @@
     "paths": {
       "template-ts-node-fastify/*": ["./src/*"]
     }
-  }
+  },
+  "exclude": ["test"]
 }
