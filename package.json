@@ -24,6 +24,7 @@
   "homepage": "https://github.com/huy-vuong/template-ts-node-fastify",
   "dependencies": {
     "fastify": "^4.26.0",
+    "module-alias": "^2.2.3",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.3.3"
@@ -55,5 +56,8 @@
     "*.{js,jsx,ts,tsx}": [
       "eslint"
     ]
+  },
+  "_moduleAliases": {
+    "template-ts-node-fastify": "build/src"
   }
 }

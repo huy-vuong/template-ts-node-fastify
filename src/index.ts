@@ -1,3 +1,5 @@
+import 'module-alias/register';
+
 import Fastify from 'fastify';
 import { getHello } from 'template-ts-node-fastify/hello';
 
@@ -26,7 +28,7 @@ fastify.post('/', async (request, reply) => {
 
 async function start() {
   try {
-    fastify.listen({ port: 3000 });
+    fastify.listen({ port: Number(process.env.PORT ?? 3000) });
   } catch (err) {
     fastify.log.error(err);
     process.exit(1);
