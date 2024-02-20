@@ -1,25 +1,8 @@
-import { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
-import { getHello } from 'template-ts-node-fastify/hello';
+import { FastifyInstance } from 'fastify';
+import { get, post } from 'template-ts-node-fastify/handlers/handlers';
 
 export default async function Routes(fastify: FastifyInstance): Promise<void> {
-  fastify.get('/', async (request: FastifyRequest, reply: FastifyReply) => {
-    reply.send({
-      message: getHello(fastify.config.HELLO),
-      method: request.method,
-      url: request.url,
-      query: request.query,
-      headers: request.headers,
-    });
-  });
+  fastify.get('/', get(fastify));
 
-  fastify.post('/', async (request: FastifyRequest, reply: FastifyReply) => {
-    reply.send({
-      message: getHello(fastify.config.HELLO),
-      method: request.method,
-      url: request.url,
-      query: request.query,
-      headers: request.headers,
-      body: request.body,
-    });
-  });
+  fastify.post('/', post(fastify));
 }
