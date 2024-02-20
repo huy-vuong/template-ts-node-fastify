@@ -1,25 +1,16 @@
-import { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
-import { getHello } from 'template-ts-node-fastify/hello';
+import Cors from '@fastify/cors';
+import Env from '@fastify/env';
+import Sensible from '@fastify/sensible';
+import { FastifyInstance } from 'fastify';
+import { EnvSchema } from 'template-ts-node-fastify/schemas/env-schema';
+import Routes from 'template-ts-node-fastify/routes/routes';
 
 export default async function App(fastify: FastifyInstance): Promise<void> {
-  fastify.get('/', async (request: FastifyRequest, reply: FastifyReply) => {
-    reply.send({
-      message: getHello(fastify.config.HELLO),
-      method: request.method,
-      url: request.url,
-      query: request.query,
-      headers: request.headers,
-    });
-  });
+  await fastify.register(Env, { schema: EnvSchema, dotenv: true });
 
-  fastify.post('/', async (request: FastifyRequest, reply: FastifyReply) => {
-    reply.send({
-      message: getHello(fastify.config.HELLO),
-      method: request.method,
-      url: request.url,
-      query: request.query,
-      headers: request.headers,
-      body: request.body,
-    });
-  });
+  await fastify.register(Sensible);
+
+  await fastify.register(Cors, { origin: true });
+
+  await fastify.register(Routes);
 }
