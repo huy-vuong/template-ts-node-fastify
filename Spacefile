@@ -12,3 +12,7 @@ micros:
     run: 'node build/src/index.js'
     public_routes:
       - '/*'
+    presets:
+      env:
+        - name: HELLO
+          description: Target to say "Hello!" to
