@@ -1,10 +1,13 @@
 import 'module-alias/register';
 
+import Cors from '@fastify/cors';
 import Fastify from 'fastify';
 import App from 'template-ts-node-fastify/app';
 
 async function start() {
   const fastify = Fastify({ logger: true });
+
+  await fastify.register(Cors, { origin: true });
 
   await fastify.register(App);
 
